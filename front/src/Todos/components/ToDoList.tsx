@@ -1,23 +1,16 @@
 import { useEffect } from 'react';
-import {
-  Button,
-  CircularProgress,
-  Grid,
-  List,
-  Typography,
-} from '@mui/material';
+import { CircularProgress, Grid, List, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ToDoItem from './ToDoItem';
 import { useToDo } from '../../shared/hooks/useToDo';
 import { RootState } from '../../store/store';
-import CustomDialog from '../../shared/components/modal/CustomDialog';
 
 const ToDoList = () => {
   const dispatch = useDispatch();
   const todos = useSelector((store: RootState) => store.todo.todos);
 
-  const { isLoading, error, clearError, getTodos } = useToDo();
+  const { isLoading, getTodos } = useToDo();
 
   useEffect(() => {
     getTodos();
