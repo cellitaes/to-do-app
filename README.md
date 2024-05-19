@@ -1,6 +1,5 @@
-# React + TypeScript + Vite
 
-Welcome to my Vite project! This project was bootstrapped with Vite, a fast frontend development build tool.
+Welcome to my ToDo project! This project was bootstrapped with Vite a fast frontend development build tool and ExpressJs.
 
 ## Getting Started on frontend
 
