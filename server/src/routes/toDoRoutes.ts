@@ -8,6 +8,7 @@ import {
 import { body } from 'express-validator';
 import { validateIdParam } from '../utils/validators/paramsValidators';
 import { TaskStatus } from '../enums/task.enum';
+import { checkUser } from '../middlewares/checkUser';
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.get('/:searchTitle?', getToDos);
 
 router.post(
   '/',
+  checkUser,
   body('title')
     .isString()
     .notEmpty()
@@ -24,6 +26,7 @@ router.post(
 
 router.patch(
   '/',
+  checkUser,
   body('id').isInt().withMessage('ID must be a valid number'),
   body('title').isString().notEmpty().withMessage('Text is required'),
   body('status').custom((value) => {
@@ -36,6 +39,6 @@ router.patch(
   editToDo
 );
 
-router.delete('/:id', validateIdParam, deleteToDo);
+router.delete('/:id', checkUser, validateIdParam, deleteToDo);
 
 export default router;

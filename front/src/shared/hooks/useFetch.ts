@@ -25,6 +25,7 @@ export const useHttpClient = () => {
       headers: Record<string, string> = {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        User: 'test',
       }
     ): Promise<ApiResponse<T>> => {
       setIsLoading(true);
