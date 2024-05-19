@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  server:
+    container_name: server
+    build:
+      context: ./server
+    ports:
+      - '5000:5000'
+    restart: always
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+
+  front:
+    container_name: front
+    build:
+      context: ./front
+    ports:
+      - '80:80'
+    volumes:
+      - ./front/src:/app/src
+      - /app/node_modules
+    stdin_open: true
+    restart: always
+    depends_on:
+      - server
+
+volumes:
+  data:
