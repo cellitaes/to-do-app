@@ -1,14 +1,24 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import bodyParser from 'body-parser';
+
+import { logRequest } from './prepareServer/logRequest';
+import { setCors } from './prepareServer/cors';
+import { routeNotFoundMiddleware } from './prepareServer/routeNotFound';
+import { errorMiddleware } from './prepareServer/error';
+
+import toDoRouter from './routes/toDoRoutes';
 
 const app = express();
-const PORT = 3000;
 
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(logRequest);
+app.use(setCors);
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, TypeScript with Express!');
-});
+app.use('/api/todo', toDoRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port:${PORT}`);
+routeNotFoundMiddleware(app);
+errorMiddleware(app);
+
+app.listen(5000, () => {
+  console.log('server is listening');
 });
