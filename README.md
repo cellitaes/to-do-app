@@ -31,14 +31,6 @@ npm start
 
 5. Your server should be running on `http://localhost:5000`
 
-## Available Scripts
-
-In the project directory, you can run the following scripts:
-
-- `npm run start`: Starts the development server.
-- `npm run build`: Builds the app for production.
-- `npm run serve`: Serves the production build locally.
-- `npm run test`: Starts vitest unit tests.
 
 ## Docker
 
