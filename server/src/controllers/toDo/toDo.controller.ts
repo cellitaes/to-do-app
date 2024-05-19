@@ -6,6 +6,7 @@ import { validationResult } from 'express-validator';
 import { checkIfStatusIsDone } from '../../utils/functions/status';
 import { generateNewDate } from '../../utils/functions/date';
 import { filterToDosByTitle } from '../../utils/functions/todoFiltration';
+import { EDITING_TASK_DOESNT_EXIST } from '../../constants/messages';
 
 let ID_COUNTER = 10;
 let todos: ToDo[] = [
@@ -117,7 +118,7 @@ export const editToDo = (req: Request, res: Response) => {
 
   const existingToDoIdx = todos.findIndex(({ id: todoId }) => todoId === id);
   const existingToDo = todos[existingToDoIdx];
-  if (!existingToDo) throw new Error('Task you want to edit does not exist');
+  if (!existingToDo) throw new Error(EDITING_TASK_DOESNT_EXIST);
 
   const editedToDo = {
     ...existingToDo,

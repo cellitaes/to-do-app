@@ -7,6 +7,7 @@ import { routeNotFoundMiddleware } from './prepareServer/routeNotFound';
 import { errorMiddleware } from './prepareServer/error';
 
 import toDoRouter from './routes/toDoRoutes';
+import { SERVER_IS_LISTENING } from './constants/messages';
 
 const app = express();
 
@@ -20,5 +21,5 @@ routeNotFoundMiddleware(app);
 errorMiddleware(app);
 
 app.listen(5000, () => {
-  console.log('server is listening');
+  console.log(SERVER_IS_LISTENING);
 });
